@@ -22,6 +22,6 @@ class HomeView(TemplateView):
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', HomeView.as_view(), name="HOME"),
-    # path('blog/', include('blog.urls'), name="BLOG")
+    path('', HomeView.as_view(), name="home"),
+    path('blog/', include('blog.urls'), name="blog")
 ]
