@@ -19,6 +19,13 @@ from django.views.generic import TemplateView
 
 class HomeView(TemplateView):
     template_name='index.html'
+    context_object_name= 'object'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['remote_addr'] = self.request.META['REMOTE_ADDR']
+        context['get_host'] = self.request.get_host()
+        print(context)
+        return context
 
 urlpatterns = [
     path('admin/', admin.site.urls),
