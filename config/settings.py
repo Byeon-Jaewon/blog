@@ -139,6 +139,9 @@ AWS_REGION = 'ap-northeast-2'
 AWS_STORAGE_BUCKET_NAME = 'byeonjaebucket'
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.%s.amazonaws.com' % (AWS_STORAGE_BUCKET_NAME,AWS_REGION)
 
+AWS_S3_CDN_DOMAIN = 'd3ncrud1r4s1xd.cloudfront.net'
+
+
 DEFAULT_FILE_STORAGE = 'blog.storages.S3DefaultStorage'
 # STATICFILES_STORAGE = 'blog.storages.S3StaticStorage'
 

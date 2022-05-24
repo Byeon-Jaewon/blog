@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 import os
 from uuid import uuid4
-from django.utils import timezone
+
 
 def date_upload_to(instance, filename):
   # 길이 32 인 uuid 값
