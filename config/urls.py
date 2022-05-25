@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+import os
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
@@ -22,9 +23,9 @@ class HomeView(TemplateView):
     context_object_name= 'object'
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['remote_addr'] = self.request.META['REMOTE_ADDR']
-        context['get_host'] = self.request.get_host()
-        print(context)
+        
+        context['hostinfo'] = os.environ.get('HOSTNAME')
+        
         return context
 
 urlpatterns = [
