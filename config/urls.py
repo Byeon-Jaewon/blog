@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.utils import timezone
 from django.views.generic import TemplateView
 
 class HomeView(TemplateView):
@@ -23,12 +24,18 @@ class HomeView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         import socket
+        now = timezone.now()
+        ex = now.year + now.month + now.day + now.hour + now.minute + now.second +now.microsecond
+        print(now)
+        print(type(now))
 
         try:
             HOSTNAME = socket.gethostname()
         except:
             HOSTNAME = 'localhost'
         context['hostinfo'] = HOSTNAME
+        context['now'] = now
+        context['ex'] = ex
         
         return context
 
