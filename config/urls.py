@@ -34,8 +34,8 @@ class HomeView(TemplateView):
         except:
             HOSTNAME = 'localhost'
         context['hostinfo'] = HOSTNAME
-        context['now'] = now
-        context['ex'] = ex
+        context['now'] = value
+
         
         return context
 
