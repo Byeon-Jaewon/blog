@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.utils import timezone
 from django.views.generic import TemplateView
+import random
 
 class HomeView(TemplateView):
     template_name='index.html'
@@ -24,10 +25,9 @@ class HomeView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         import socket
-        now = timezone.now()
-        ex = now.year + now.month + now.day + now.hour + now.minute + now.second +now.microsecond
-        print(now)
-        print(type(now))
+        value = 0
+        while value < 10000:
+            value = random.randint(0,20000)
 
         try:
             HOSTNAME = socket.gethostname()
