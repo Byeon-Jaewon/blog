@@ -26,7 +26,7 @@ class HomeView(TemplateView):
         context = super().get_context_data(**kwargs)
         import socket
         value = 0
-        while value < 10000:
+        while value < 1000:
             value = random.randint(0,20000)
 
         try:
