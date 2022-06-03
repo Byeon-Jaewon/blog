@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.utils import timezone
 from django.views.generic import TemplateView
-import random
+
 
 class HomeView(TemplateView):
     template_name='index.html'
@@ -25,10 +25,7 @@ class HomeView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         import socket
-        value = 0
-        while value < 19500:
-            value = random.randint(0,20000)
-
+        value=timezone.now()
         try:
             HOSTNAME = socket.gethostname()
         except:
