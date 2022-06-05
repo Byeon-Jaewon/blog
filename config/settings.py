@@ -84,9 +84,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'devopsdb',
-        'USER': 'byeonjae',
-        'PASSWORD': 'qus96wo12dnjs13',
-        'HOST': 'devopsdb.cuyjehhaxyir.ap-northeast-2.rds.amazonaws.com',
+        'USER': 'admin',
+        'PASSWORD': '1q2w3e4r',
+        'HOST': 'devops-db.cuyjehhaxyir.ap-northeast-2.rds.amazonaws.com',
         'PORT': '3306',
     }
 }
