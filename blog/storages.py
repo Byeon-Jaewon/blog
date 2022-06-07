@@ -10,7 +10,13 @@ class S3DefaultStorage(S3Boto3Storage):
     default_acl = 'private'
     location = 'media'
     
-# for static
-class S3StaticStorage(S3Boto3Storage):
-    default_acl = 'public-read'
-    location = 'static'
+
+
+class S3ImageStorage(S3Boto3Storage):
+    default_acl = 'private'
+    location = 'media/image'
+
+
+class S3FileStorage(S3Boto3Storage):
+    default_acl = 'private'
+    location = 'media/file'
