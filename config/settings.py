@@ -31,7 +31,7 @@ SECRET_KEY = 'django-insecure-)ipww!m6+y()zhgi2oj8p40y2r*j@4c#szli#dsxbbou3a1636
 DEBUG = True
 
 ALLOWED_HOSTS = ['byeonjae.net']
-CSRF_TRUSTED_ORIGINS = ['byeonjae.net']
+CSRF_TRUSTED_ORIGINS = ['https://byeonjae.net']
 
 
 # Application definition
