@@ -14,7 +14,7 @@
         {% endif %}
         {% if post.file %}
         <a href="{% static_cdn post.file.url %}">열기</a>
-        <a href="{% static_cdn post.file.url %}" download>다운로드</a>
+        <a href="{% static_cdn post.file.url %}?response-content-disposition=attachment" download>다운로드</a>
         {% endif %}
       </div>
     </div>
