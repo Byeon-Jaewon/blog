@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 import os
 from uuid import uuid4
 
-from blog.storages import S3ImageStorage
+from blog.storages import S3FileStorage, S3ImageStorage
 
 
 def image_upload_to(instance, filename):
@@ -29,5 +29,5 @@ class Post(models.Model):
     image = models.ImageField(upload_to=image_upload_to,
                               storage=S3ImageStorage,
                               null=True, blank=True, verbose_name="이미지")
-    file = models.FileField()
+    file = models.FileField(storage=S3FileStorage, null=True, blank=True, verbose_name="파일")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="생성")
