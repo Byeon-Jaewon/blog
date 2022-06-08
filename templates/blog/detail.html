@@ -12,6 +12,9 @@
         {% if post.image %}
         <img src="{% static_cdn post.image.url %}">
         {% endif %}
+        {% if post.file %}
+        <p>{{post.file}}</p>
+        {% endif %}
       </div>
     </div>
   </div>
