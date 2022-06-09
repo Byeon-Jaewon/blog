@@ -129,12 +129,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
-STATIC_ROOT = os.path.join(BASE_DIR, '.static_root')
-
 AWS_ACCESS_KEY_ID = 'AKIAXOKWGOICON5TRZ6K'
 AWS_SECRET_ACCESS_KEY = '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'
 AWS_REGION = 'ap-northeast-2'
@@ -143,9 +137,14 @@ AWS_S3_CUSTOM_DOMAIN = '%s.s3.%s.amazonaws.com' % (AWS_STORAGE_BUCKET_NAME,AWS_R
 
 AWS_S3_CDN_DOMAIN = 'd3ncrud1r4s1xd.cloudfront.net'
 
+STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_REGION)
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+STATIC_ROOT = os.path.join(BASE_DIR, '.static_root')
 
 DEFAULT_FILE_STORAGE = 'blog.storages.S3DefaultStorage'
-# STATICFILES_STORAGE = 'blog.storages.S3StaticStorage'
+STATICFILES_STORAGE = 'blog.storages.S3StaticStorage'
 
 
 # Default primary key field type
