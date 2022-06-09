@@ -133,7 +133,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, '.static_root')
+# STATIC_ROOT = os.path.join(BASE_DIR, '.static_root')
 
 AWS_ACCESS_KEY_ID = 'AKIAXOKWGOICON5TRZ6K'
 AWS_SECRET_ACCESS_KEY = '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'
@@ -145,7 +145,7 @@ AWS_S3_CDN_DOMAIN = 'd3ncrud1r4s1xd.cloudfront.net'
 
 
 DEFAULT_FILE_STORAGE = 'blog.storages.S3DefaultStorage'
-# STATICFILES_STORAGE = 'blog.storages.S3StaticStorage'
+STATICFILES_STORAGE = 'blog.storages.S3StaticStorage'
 
 
 # Default primary key field type
