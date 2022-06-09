@@ -14,6 +14,7 @@ class S3DefaultStorage(S3Boto3Storage):
 class S3StaticStorage(S3Boto3Storage):
     default_acl = 'public-read'
     location = 'static'
+    custom_domain = 'd3ncrud1r4s1xd.cloudfront.net'
 
 
 class S3ImageStorage(S3Boto3Storage):
