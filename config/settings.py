@@ -10,8 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import json
 import os
 from pathlib import Path
+from django.core.exceptions import ImproperlyConfigured
 
 import pymysql
 
@@ -26,7 +28,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 secret_file = os.path.join(BASE_DIR, 'secrets.json')
-SECRET_KEY = secret_file["SECRET_KEY"]
+
+# json 파일을 읽어 secret에 할당합니다.
+with open(secret_file) as f:
+	secrets = json.loads(f.read())
+
+# json 파일에 key를 확인하고 key가 없으면 KeyError를 출력합니다.
+def get_secret(setting, secrets=secrets):
+    try:
+        return secrets[setting]
+    except KeyError:
+        error_msg = "Set the {0} enviroment variable".format(setting)
+        raise ImproperlyConfigured(error_msg)
+
+SECRET_KEY = get_secret("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -136,16 +151,16 @@ STATICFILES_DIRS = [
 ]
 # STATIC_ROOT = os.path.join(BASE_DIR, '.static_root')
 
-AWS_ACCESS_KEY_ID = secret_file["AWS_ACCESS_KEY_ID"]
-AWS_SECRET_ACCESS_KEY = secret_file["AWS_SECRET_ACCESS_KEY"]
+AWS_ACCESS_KEY_ID = get_secret("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = get_secret("AWS_SECRET_ACCESS_KEY")
 AWS_REGION = 'ap-northeast-2'
 AWS_STORAGE_BUCKET_NAME = 'byeonjaebucket'
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.%s.amazonaws.com' % (AWS_STORAGE_BUCKET_NAME,AWS_REGION)
 
 AWS_S3_CDN_DOMAIN = 'd3ncrud1r4s1xd.cloudfront.net'
 
-AWS_CLOUDFRONT_KEY = secret_file["AWS_CLOUDFRONT_KEY"]
-AWS_CLOUDFRONT_KEY_ID = secret_file["AWS_CLOUDFRONT_KEY_ID"]
+AWS_CLOUDFRONT_KEY = get_secret("AWS_CLOUDFRONT_KEY")
+AWS_CLOUDFRONT_KEY_ID = get_secret("AWS_CLOUDFRONT_KEY_ID")
 
 
 DEFAULT_FILE_STORAGE = 'blog.storages.S3DefaultStorage'
