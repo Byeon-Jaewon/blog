@@ -25,7 +25,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-)ipww!m6+y()zhgi2oj8p40y2r*j@4c#szli#dsxbbou3a1636'
+secret_file = os.path.join(BASE_DIR, 'secrets.json')
+SECRET_KEY = secret_file["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -135,13 +136,16 @@ STATICFILES_DIRS = [
 ]
 # STATIC_ROOT = os.path.join(BASE_DIR, '.static_root')
 
-AWS_ACCESS_KEY_ID = 'AKIAXOKWGOICON5TRZ6K'
-AWS_SECRET_ACCESS_KEY = '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'
+AWS_ACCESS_KEY_ID = secret_file["AWS_ACCESS_KEY_ID"]
+AWS_SECRET_ACCESS_KEY = secret_file["AWS_SECRET_ACCESS_KEY"]
 AWS_REGION = 'ap-northeast-2'
 AWS_STORAGE_BUCKET_NAME = 'byeonjaebucket'
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.%s.amazonaws.com' % (AWS_STORAGE_BUCKET_NAME,AWS_REGION)
 
 AWS_S3_CDN_DOMAIN = 'd3ncrud1r4s1xd.cloudfront.net'
+
+AWS_CLOUDFRONT_KEY = secret_file["AWS_CLOUDFRONT_KEY"]
+AWS_CLOUDFRONT_KEY_ID = secret_file["AWS_CLOUDFRONT_KEY_ID"]
 
 
 DEFAULT_FILE_STORAGE = 'blog.storages.S3DefaultStorage'
