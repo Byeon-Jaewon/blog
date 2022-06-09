@@ -9,7 +9,11 @@ __all__ = (
 class S3DefaultStorage(S3Boto3Storage):
     default_acl = 'private'
     location = 'media'
-    
+
+
+class S3StaticStorage(S3Boto3Storage):
+    default_acl = 'public-read'
+    location = 'static'
 
 
 class S3ImageStorage(S3Boto3Storage):
