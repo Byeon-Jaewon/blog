@@ -145,7 +145,7 @@ AWS_S3_CDN_DOMAIN = 'd3ncrud1r4s1xd.cloudfront.net'
 
 
 DEFAULT_FILE_STORAGE = 'blog.storages.S3DefaultStorage'
-STATICFILES_STORAGE = 'blog.storages.S3StaticStorage'
+# STATICFILES_STORAGE = 'blog.storages.S3StaticStorage'
 
 
 # Default primary key field type
