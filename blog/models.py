@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 import os
 from uuid import uuid4
-
+from botocore.signers import CloudFrontSigner
 from blog.storages import S3FileStorage, S3ImageStorage
 
 
@@ -31,3 +31,7 @@ class Post(models.Model):
                               null=True, blank=True, verbose_name="이미지")
     file = models.FileField(storage=S3FileStorage, null=True, blank=True, verbose_name="파일")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="생성")
+
+    @property
+    def file_download(self):
+        return CloudFrontSigner.generate_presigned_url(self.image.url+'response-content-disposition=attachment')
