@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 import os
 from uuid import uuid4
 from botocore.signers import CloudFrontSigner
+from config import settings
+import rsa
 from blog.storages import S3FileStorage, S3ImageStorage
 
 
@@ -34,4 +36,9 @@ class Post(models.Model):
 
     @property
     def file_download(self):
-        return CloudFrontSigner.generate_presigned_url(self.image.url+'response-content-disposition=attachment')
+        def rsa_signer(message):
+            private_key = settings.AWS_CLOUDFRONT_KEY
+            return rsa.sign(message, rsa.PrivateKey.load_pkcs1(private_key.encode('utf8')), 'SHA-1')
+
+        cf_signer = CloudFrontSigner(settings.AWS_CLOUDFRONT_KEY_ID, rsa_signer)
+        return cf_signer.generate_presigned_url(self.image.url+'response-content-disposition=attachment')
