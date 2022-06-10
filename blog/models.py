@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.db import models
 from django.contrib.auth.models import User
 import os
@@ -41,4 +42,4 @@ class Post(models.Model):
             return rsa.sign(message, rsa.PrivateKey.load_pkcs1(private_key.encode('utf8')), 'SHA-1')
 
         cf_signer = CloudFrontSigner(settings.AWS_CLOUDFRONT_KEY_ID, rsa_signer)
-        return cf_signer.generate_presigned_url(self.image.url+'response-content-disposition=attachment')
+        return cf_signer.generate_presigned_url(self.image.url+'response-content-disposition=attachment', date_less_than=datetime(2023,1,1))
