@@ -35,11 +35,3 @@ class Post(models.Model):
     file = models.FileField(storage=S3FileStorage, null=True, blank=True, verbose_name="파일")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="생성")
 
-    @property
-    def file_download(self):
-        def rsa_signer(message):
-            private_key = settings.AWS_CLOUDFRONT_KEY
-            return rsa.sign(message, rsa.PrivateKey.load_pkcs1(private_key.encode('utf8')), 'SHA-1')
-
-        cf_signer = CloudFrontSigner(settings.AWS_CLOUDFRONT_KEY_ID, rsa_signer)
-        return cf_signer.generate_presigned_url(self.image.url+'response-content-disposition=attachment', date_less_than=datetime(2023,1,1))
