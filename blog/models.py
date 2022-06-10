@@ -1,11 +1,7 @@
-from datetime import datetime
 from django.db import models
 from django.contrib.auth.models import User
 import os
 from uuid import uuid4
-from botocore.signers import CloudFrontSigner
-from config import settings
-import rsa
 from blog.storages import S3FileStorage, S3ImageStorage
 
 
