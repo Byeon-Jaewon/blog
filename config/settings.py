@@ -29,11 +29,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 secret_file = os.path.join(BASE_DIR, 'secrets.json')
 
-# json 파일을 읽어 secret에 할당합니다.
 with open(secret_file) as f:
-	secrets = json.loads(f.read())
+    secrets = json.loads(f.read())
 
-# json 파일에 key를 확인하고 key가 없으면 KeyError를 출력합니다.
 def get_secret(setting, secrets=secrets):
     try:
         return secrets[setting]
@@ -155,11 +153,13 @@ AWS_ACCESS_KEY_ID = get_secret("AWS_ACCESS_KEY_ID")
 AWS_SECRET_ACCESS_KEY = get_secret("AWS_SECRET_ACCESS_KEY")
 AWS_REGION = 'ap-northeast-2'
 AWS_STORAGE_BUCKET_NAME = 'byeonjaebucket'
-AWS_S3_CUSTOM_DOMAIN = '%s.s3.%s.amazonaws.com' % (AWS_STORAGE_BUCKET_NAME,AWS_REGION)
-
+# AWS_S3_CUSTOM_DOMAIN = '%s.s3.%s.amazonaws.com' % (AWS_STORAGE_BUCKET_NAME,AWS_REGION)
+AWS_S3_CUSTOM_DOMAIN = 'd3ncrud1r4s1xd.cloudfront.net'
 AWS_S3_CDN_DOMAIN = 'd3ncrud1r4s1xd.cloudfront.net'
 
-AWS_CLOUDFRONT_KEY = get_secret("AWS_CLOUDFRONT_KEY")
+# AWS_CLOUDFRONT_KEY = get_secret("AWS_CLOUDFRONT_KEY").encode('ascii')
+with open(os.path.join(BASE_DIR, "cdn_private_key.pem")) as aws_cert:
+    AWS_CLOUDFRONT_KEY = aws_cert.read()
 AWS_CLOUDFRONT_KEY_ID = get_secret("AWS_CLOUDFRONT_KEY_ID")
 
 
