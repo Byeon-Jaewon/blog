@@ -24,4 +24,4 @@ class S3ImageStorage(S3Boto3Storage):
 class S3FileStorage(S3Boto3Storage):
     default_acl = 'private'
     location = 'media/file'
-    object_parameters = {'response-content-disposition':'attachment'}
+    object_parameters = {'ContentDisposition':'attachment'}
