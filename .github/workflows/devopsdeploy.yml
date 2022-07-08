@@ -43,8 +43,8 @@ jobs:
       - name: Create CodeDeploy Deployment
         id: deploy
         run: |
-          aws deploy create-deployment \
-            --application-name django-test-codedeploy \
-            --deployment-group-name django-test-codedeploy-group \
+          aws deploy devops-blog-app \
+            --application-name devops-blog-app \
+            --deployment-group-name devops-deploy-group \
             --deployment-config-name CodeDeployDefault.OneAtATime \
             --github-location repository=${{ github.repository }},commitId=${{ github.sha }}
