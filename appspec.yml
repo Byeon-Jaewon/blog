@@ -1,0 +1,15 @@
+version: 0.0
+os: linux
+files:
+  - source: .
+    destination: /home/ubuntu/sourcecode/blog
+hooks:
+  BeforeInstall:
+    - location: scripts/before_script
+      runas: root
+  Install:
+    - location: scripts/install
+      runas: root
+  ApplicationStart:
+    - location: scripts/start_server
+      runas: root

@@ -1,0 +1,19 @@
+upstream app {
+        server  unix:/home/ubuntu/sourcecode/blog/run/gunicorn.sock;
+}
+
+server {
+        listen 80;
+        server_name byeonjae.net loadbalancer-devops-1807927528.ap-northeast-2.elb.amazonaws.com;
+
+        location = /favicon.ico { access_log off; log_not_found off; }
+
+        location /static/ {
+                alias https://d3ncrud1r4s1xd.cloudfront.net/static/;
+        }
+
+        location / {
+                include proxy_params;
+                proxy_pass http://app;
+        }
+}
