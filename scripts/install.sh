@@ -1,4 +1,4 @@
 #!/bin/bash
 
-sudo cp -r ~/run/ ~/sourcecode/blog
-sudo cp -r ~/sourcecode/blog/scripts/blog /etc/nginx/sites-available/
+sudo cp -r /home/ubuntu/run/ /home/ubuntu/sourcecode/blog
+sudo cp -r /home/ubuntu/sourcecode/blog/scripts/blog /etc/nginx/sites-available/
