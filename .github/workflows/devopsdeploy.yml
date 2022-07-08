@@ -43,7 +43,7 @@ jobs:
       - name: Create CodeDeploy Deployment
         id: deploy
         run: |
-          aws deploy devops-blog-app \
+          aws deploy create-deployment \
             --application-name devops-blog-app \
             --deployment-group-name devops-deploy-group \
             --deployment-config-name CodeDeployDefault.OneAtATime \
