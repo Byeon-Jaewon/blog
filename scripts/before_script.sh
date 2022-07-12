@@ -3,4 +3,6 @@
 
 cd /home/ubuntu/sourcecode/blog/
 # sudo rm -rf /home/ubuntu/sourcecode/blog/
-# sudo pip install -r requirement.txt
+sudo apt-get install python3-pip
+
+sudo pip install -r requirement.txt
